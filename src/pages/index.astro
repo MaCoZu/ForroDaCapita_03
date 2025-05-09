@@ -12,14 +12,23 @@ import Door from "../assets/images/pageimages/pa58_images/door.jpg";
 import { getCollection } from "astro:content";
 
 const posts = (await getCollection("news"))
-    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()) // sort by latest
-    .slice(0, 1);
+    .map((post) => ({
+        ...post,
+        data: {
+            ...post.data,
+            pubDate: new Date(post.data.pubDate),
+            updateDate: post.data.updatedDate
+                ? new Date(post.data.updatedDate.valueOf())
+                : null,
+        },
+    }))
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const [latest, ...rest] = posts;
+const [latest, ...rest] = posts ?? [];
 ---
 
 <Layout title="Forró da Capita | News">
-    <div class="flex flex-col col-span-1 md:flex-row md:mt-15 mt-5">
+    <div class="flex flex-col col-span-1 lg:flex-row md:mt-15 mt-5">
         <div class="md:px-0 order-1">
             <!-- Headline -->
             <div class="md:mb-10 mb-0 border-spacing-4">
@@ -45,8 +54,8 @@ const [latest, ...rest] = posts;
             <Divider text="News" className="lg:hidden py-5 flex" />
 
             <!-- Post  -->
-            <div class="flex flex-col lg:flex-row order-2">
-                <div class="flex-1 min-w-0 pr-18 mr-20">
+            <div class="flex flex-col md:flex-row order-2">
+                <div class="flex-1 min-w-0 md:pr-18 md:mr-20">
                     <Divider
                         text="News"
                         className="hidden lg:relative lg:flex md:pb-5"
@@ -54,14 +63,26 @@ const [latest, ...rest] = posts;
 
                     <div id="news" class="scroll-mt-[150px]">
                         <div class="md:h-[45vh] overflow-y-auto">
-                            <FullPost post={latest} />
+                            {
+                                latest ? (
+                                    <FullPost post={latest} />
+                                ) : (
+                                    <div class="text-center py-10 text-gray-400">
+                                        <p>
+                                            Nothing new usually means the normal
+                                            routine.
+                                        </p>
+                                        <p>Which is routinely a good thing.</p>
+                                    </div>
+                                )
+                            }
                         </div>
                     </div>
                 </div>
 
                 <Divider text="Map" className="lg:hidden flex py-5 " />
 
-                <!-- Map  -->
+                <!-- MAP  -->
                 <div class="lg:-mt-10 lg:w-1/4 group order-3 mb-4">
                     <Image
                         src={MapImage}
@@ -73,14 +94,13 @@ const [latest, ...rest] = posts;
         </div>
     </div>
 
+    <!-- PHOTOS  -->
     <Divider text="How to find us." className="py-10 flex" />
 
     <div class="md:mb-5 mb-0">
         <h1 class="text-xl font-merri text-slate-600">
             Once in the first backyard, this is the way to go.
         </h1>
-
-      
     </div>
 
     <div class="max-w-full flex flex-col md:flex-row mt-10 gap-3">
@@ -100,6 +120,4 @@ const [latest, ...rest] = posts;
             class="w-full md:flex-1 max-w-full rounded-sm aspect-square hover:scale-105 transition-all object-cover"
         />
     </div>
-
-   
 </Layout>

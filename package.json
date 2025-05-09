@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tinacms build && astro build",
     "dev": "tinacms dev -c \"astro dev\"",
-    "generate:types": "tinacms schema:types" 
+    "generate:types": "tinacms schema:types"
   },
   "pnpm": {
     "allowedDeprecatedVersions": {
@@ -29,6 +29,8 @@
     "@types/react-dom": "^19.1.2",
     "alpinejs": "^3.14.9",
     "astro": "^5.7.4",
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
     "graphql": "^16.11.0",
     "i": "^0.3.7",
     "next": "^15.3.1",

@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
-import rehypeRaw from 'rehype-raw'
-import FormattedDate from './FormattedDate.astro'
 
 export default function BlogViewer({ posts, postContents }) {
     const [currentSlug, setCurrentSlug] = useState(posts[0].id)
