@@ -5,20 +5,15 @@ import {
   UsernamePasswordAuthJSProvider,
 } from 'tinacms-authjs/dist/tinacms'
 
-interface Values {
-  pubDate?: string;
-  updatedDate?: string;
-}
-
-const user = { username: 'newseditor' }; // or get the user object from somewhere else
-
+// Check if we're in local development mode
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true';
 
 export default defineConfig({
   branch: process.env.GITHUB_BRANCH || "main",
-  token: process.env.TINA_TOKEN,
+  token: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-  
+
+  // Very important for Astro setup - point to our API routes
   contentApiUrlOverride: '/api/tina/gql',
 
   authProvider: isLocal
@@ -52,7 +47,7 @@ export default defineConfig({
         ],
         ui: {
           allowedActions: {
-            create: isLocal || (user?.username === 'newseditor'),
+            create: true, 
             delete: false,
             createNestedFolder: false, 
           },

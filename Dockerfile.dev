@@ -1,0 +1,18 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copy package files
+COPY package.json package-lock.json* ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy application code
+COPY . .
+
+# Expose the port that Astro will run on
+EXPOSE 4321
+
+# Start the development server
+CMD ["npm", "run", "dev"]

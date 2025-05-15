@@ -3,9 +3,11 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "dev": "cross-env DEBUG=tinacms* tinacms dev -c \"astro dev\"",
+    "dev:local": "cross-env TINA_PUBLIC_IS_LOCAL=true DEBUG=tinacms* tinacms dev -c \"astro dev\"",
     "build": "tinacms build && astro build",
-    "dev": "tinacms dev -c \"astro dev\"",
-    "generate:types": "tinacms schema:types"
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "pnpm": {
     "allowedDeprecatedVersions": {
@@ -21,6 +23,7 @@
     "@astrojs/react": "^4.2.7",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.4.0",
+    "@auth/mongodb-adapter": "^3.9.1",
     "@tailwindcss/vite": "^4.1.6",
     "@tinacms/auth": "^1.0.12",
     "@tinacms/datalayer": "^1.3.17",
@@ -29,12 +32,13 @@
     "@types/react-dom": "^19.1.5",
     "alpinejs": "^3.14.9",
     "astro": "^5.7.13",
+    "auth-astro": "^4.2.0",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
     "graphql": "^16.11.0",
     "i": "^0.3.7",
+    "mongodb": "^6.16.0",
     "mongodb-level": "^0.0.4",
-    "next": "^15.3.2",
     "next-auth": "^4.24.11",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -52,10 +56,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "@tinacms/cli": "^1.9.7",
     "@types/node": "^22.15.18",
-    "@typescript-eslint/parser": "^8.32.1",
-    "eslint": "^9.26.0",
-    "eslint-plugin-astro": "^1.3.1",
-    "sass-embedded": "^1.88.0",
+    "cross-env": "^7.0.3",
     "typescript": "~5.6.3"
   },
   "volta": {
