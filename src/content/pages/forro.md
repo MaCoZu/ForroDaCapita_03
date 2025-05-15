@@ -1,11 +1,9 @@
 ---
 title: Forró
 ---
-Forró is a brazillian pair dance, with a rich tradition. The music and dance spread from the northeast to the whole of Brazil, to urban dance studios and all over world. The music and dancing styles diversified in the process, while the rural roots are always present.
+Forró is a Brazilian pair dance with a rich culture; it encompasses various dance types and musical genres. It spread from the northeast of Brazil to urban dance studios and across the globe. Music and dance styles diversified in the process, while the rural roots are always present.
 
+Universities have played an important role in popularizing the dance; that's why the export version is often called Forró Universitário. Forró is a relatively close dance, making it a contact sport. Closeness facilitates subtle moves and invites leaders to listen to the followers' vibes or reverse roles.
 
-Universities played a role in making the dance popular and the export version is often called Forró Universitário. Forró and its different flavours are danced pretty close, but there are many variations and interpretations. Closeness makes this a contact sport and facilitats many subtle moves, this is defnitely no invitation for groping, but an opportunity to listen and follow even as a leader. 
-
-
-At Prinzenalle we're a bunch of Forro affcionados who like to dance in the spririt of a picinic among friends. The drinks are cheap, everybody is welcome as is a little donation. We do not make any money but the room must be booked and the sound system needs some maintenance.
+At Prinzenalle, we're a bunch of Forró aficionados who like to dance in the spirit of a picnic among friends. The door is open to everyone, the drinks are cheap, and a little donation is expected. We do not make profits, but the sound system needs some maintenance, and some trifles have to be covered. This venue is a purely voluntary scheme, as we like our hobby to be non-commercial and amenable to all. On Tuesdays everyone can be a princess.
 

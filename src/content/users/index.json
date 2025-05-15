@@ -1,0 +1,16 @@
+{
+    "users": [
+        {
+            "name": "Editor",
+            "email": "news.editor@example.com",
+            "username": "editor",
+            "password": "editor"
+        },
+        {
+            "name": "Contributor",
+            "email": "page.contributor@example.com",
+            "username": "contributer",
+            "password": "contributer"
+        }
+    ]
+}

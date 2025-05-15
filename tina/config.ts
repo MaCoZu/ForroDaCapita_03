@@ -1,24 +1,29 @@
 import { defineConfig } from "tinacms";
-import { TinaCMS, Form } from 'tinacms'
-
+import { LocalAuthProvider } from 'tinacms'; 
+import {
+  TinaUserCollection,
+  UsernamePasswordAuthJSProvider,
+} from 'tinacms-authjs/dist/tinacms'
 
 interface Values {
   pubDate?: string;
   updatedDate?: string;
-  // Add other properties as needed
 }
 
-// Your hosting provider likely exposes this as an environment variable
-const branch =
-  process.env.NEXT_PUBLIC_TINA_BRANCH ||
-  process.env.VERCEL_GIT_COMMIT_REF ||
-  process.env.HEAD ||
-  "main";
+const user = { username: 'newseditor' }; // or get the user object from somewhere else
+
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true';
 
 export default defineConfig({
-  branch: process.env.NEXT_PUBLIC_TINA_BRANCH || "main",
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+  branch: process.env.GITHUB_BRANCH || "main",
   token: process.env.TINA_TOKEN,
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+  
+  contentApiUrlOverride: '/api/tina/gql',
+
+  authProvider: isLocal
+    ? new LocalAuthProvider()
+    : new UsernamePasswordAuthJSProvider(),
 
   build: {
     outputFolder: "admin",
@@ -27,6 +32,7 @@ export default defineConfig({
 
   schema: {
     collections: [
+      TinaUserCollection,
       {
         name: "news",
         label: "News",
@@ -45,14 +51,20 @@ export default defineConfig({
           { name: "body", label: "Body", type: "rich-text", isBody: true },
         ],
         ui: {
+          allowedActions: {
+            create: isLocal || (user?.username === 'newseditor'),
+            delete: false,
+            createNestedFolder: false, 
+          },
           beforeSubmit: async ({ values }) => {
             return {
               ...values,
               updatedDate: new Date().toISOString() // Updates every save
             }
           }
-        }
+        },
       },
+
       {
         name: "pages",
         label: "Pages",
@@ -64,6 +76,7 @@ export default defineConfig({
       },
 
     ],
+    
   },
   search: {
     tina: {
@@ -73,4 +86,5 @@ export default defineConfig({
     indexBatchSize: 100,
     maxSearchIndexFieldLength: 100,
   },
+ 
 });

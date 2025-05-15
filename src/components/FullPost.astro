@@ -9,13 +9,18 @@ import { getImage } from "../utils/getImage";
 import Article from "./Article.astro";
 
 const { post } = Astro.props;
-// const thumbnail = post.data.thumbnail
-//     ? await getImage(post.data.thumbnail)
-//     : null;
 
 if (!post) {
     return null;
 }
+
+let displayDate = post.data.updatedDate
+    ? new Date(post.data.updatedDate)
+    : new Date(post.data.pubDate);
+
+// const thumbnail = post.data.thumbnail
+//   ? await getImage(post.data.thumbnail)
+//   : null;
 
 const { Content } = await render(post);
 ---
@@ -28,19 +33,22 @@ const { Content } = await render(post);
         >
         </div>
         <div class="flex-1 w-full lg:w-2/3 font-merri">
-            <time class="text-lg text-gray-500">
+            <time class="flex justify-end md:pr-7 text-md text-gray-500">
+                {post.data.updatedDate ? "updated: " : "created: "}
                 {
-                    new Date(post.data.pubDate).toLocaleDateString("de-DE", {
-                        timeZone: "Europe/Berlin", // Add this
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                        hour: "2-digit", // Add if you want time
-                        minute: "2-digit",
-                    })
+                    displayDate
+                        .toLocaleDateString("de-DE", {
+                            timeZone: "Europe/Berlin",
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                        })
+                        .replace(" um", " |")
                 }
             </time>
-            <h2 class="text-xl font-semibold text-gray-900 my-5">
+            <h2 class="text-xl font-semibold text-gray-900 mb-5 mt-0">
                 {post.data.title}
             </h2>
             <Article className="text-gray-700 md:pr-7">
