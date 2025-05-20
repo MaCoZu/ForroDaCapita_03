@@ -3,10 +3,16 @@ import { Pages } from './collections/pages'
 import { News } from './collections/news'
 
 
+const branch =
+  process.env.GITHUB_BRANCH || // Netlify-style
+  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF || // Vercel-style
+  process.env.HEAD || // Fallback (some hosts set this)
+  "main"; // Final fallback
+
 export default defineConfig({
   token: process.env.TINA_TOKEN, // This should match the value in your .env file
   clientId: process.env.TINA_CLIENT_ID, // This should match the value in your .env file
-  branch: process.env.GITHUB_BRANCH || 'main',
+  branch,
 
   build: {
     outputFolder: "admin",
