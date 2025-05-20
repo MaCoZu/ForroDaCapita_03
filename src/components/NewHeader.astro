@@ -1,7 +1,10 @@
 ---
 import { Image } from "astro:assets";
+import { SignIn, SignOut } from "auth-astro/components";
 import bar from "../assets/images/pageimages/pa58_images/BrushMask_04.svg";
-const adminUrl = import.meta.env.DEV ? "http://localhost:4001/admin" : "/admin";
+const adminUrl = import.meta.env.DEV
+  ? "http://localhost:4001/admin/"
+  : "/admin";
 ---
 
 <nav class="top-0 md:h-38 md:mb-2">
@@ -182,7 +185,9 @@ const adminUrl = import.meta.env.DEV ? "http://localhost:4001/admin" : "/admin";
               class="px-4 md:px-0 container mx-auto"
               @mouseenter="open = true"
             >
-              <div class="flex flex-row text-xl space-x-5 space-y-4 items-start">
+              <div
+                class="flex flex-row text-xl space-x-5 space-y-4 items-start"
+              >
                 <a href="/forro" class="btn flex items-center">
                   <!-- FORRÓ SVG  -->
                   <svg

@@ -3,61 +3,65 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "cross-env DEBUG=tinacms* tinacms dev -c \"astro dev\"",
-    "dev:local": "cross-env TINA_PUBLIC_IS_LOCAL=true DEBUG=tinacms* tinacms dev -c \"astro dev\"",
-    "build": "tinacms build && astro build",
+    "dev": "astro dev",
+    "tina-dev": "tinacms dev -c \"astro dev\"",
+    "tina-build": "tinacms build && astro build",
+    "tina-audit": "tinacms audit",
+    "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "gen:types": "tinacms types:gen"
   },
   "pnpm": {
     "allowedDeprecatedVersions": {
       "esbuild": "*",
       "sharp": "*",
       "better-sqlite3": "*"
+    },
+    "overrides": {
+      "tinacms-authjs": "^0.0.14",
+      "@tinacms/datalayer": "^1.5.6"
     }
   },
   "dependencies": {
     "@apollo/client": "^3.13.8",
     "@astrojs/alpinejs": "^0.4.8",
     "@astrojs/mdx": "^4.2.6",
+    "@astrojs/node": "^9.2.1",
     "@astrojs/react": "^4.2.7",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.4.0",
-    "@auth/mongodb-adapter": "^3.9.1",
-    "@tailwindcss/vite": "^4.1.6",
-    "@tinacms/auth": "^1.0.12",
-    "@tinacms/datalayer": "^1.3.17",
+    "@tailwindcss/vite": "^4.1.7",
     "@types/alpinejs": "^3.13.11",
     "@types/react": "^19.1.4",
     "@types/react-dom": "^19.1.5",
     "alpinejs": "^3.14.9",
     "astro": "^5.7.13",
     "auth-astro": "^4.2.0",
+    "cookie": "^1.0.2",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
     "graphql": "^16.11.0",
     "i": "^0.3.7",
     "mongodb": "^6.16.0",
     "mongodb-level": "^0.0.4",
-    "next-auth": "^4.24.11",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "react-markdown": "^10.1.0",
-    "react-unified": "^1.0.21",
     "rehype-raw": "^7.0.0",
     "sharp": "^0.34.1",
     "tailwind-merge": "^3.3.0",
-    "tailwindcss": "^4.1.6",
-    "tinacms": "^2.7.7",
-    "tinacms-authjs": "^10.0.7",
-    "tinacms-gitprovider-github": "^2.0.17"
+    "tailwindcss": "^4.1.7",
+    "tinacms": "^2.6.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
-    "@tinacms/cli": "^1.9.7",
+    "@tinacms/cli": "^1.8.0",
     "@types/node": "^22.15.18",
     "cross-env": "^7.0.3",
-    "typescript": "~5.6.3"
+    "dotenv": "^16.5.0",
+    "esbuild": "^0.25.4",
+    "typescript": "~5.6.3",
+    "vite": "^6.3.5"
   },
   "volta": {
     "node": "18.20.8"

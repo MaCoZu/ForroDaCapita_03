@@ -1,47 +1,33 @@
-FROM node:18-alpine AS base
+# Build stage
+FROM node:18-alpine as build
 
-# Install dependencies only when needed
-FROM base AS deps
 WORKDIR /app
 
-# Copy package.json and install dependencies
-COPY package.json package-lock.json* ./
+# Copy package files and install dependencies
+COPY package*.json ./
 RUN npm ci
 
-# Rebuild the source code only when needed
-FROM base AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+# Copy source files
 COPY . .
 
-# Set environment variables for build
-ARG TINA_PUBLIC_IS_LOCAL=false
-ENV TINA_PUBLIC_IS_LOCAL=${TINA_PUBLIC_IS_LOCAL}
-
-# Build the application
+# Build the TinaCMS admin and the Astro site
 RUN npm run build
 
-# Production image, copy all the files and run the app
-FROM base AS runner
+# Production stage
+FROM node:18-alpine
+
 WORKDIR /app
 
+# Copy only the built files from the build stage
+COPY --from=build /app/dist ./dist
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/package.json ./
+
+# Set environment variables for production
 ENV NODE_ENV=production
-
-# Copy built assets from the builder stage
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/tina ./tina
-COPY --from=builder /app/admin ./admin
-
-# Create a non-root user and switch to it
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 astrouser
-USER astrouser
 
 # Expose the port your app runs on
 EXPOSE 4321
 
-# Start the application
+# Command to run the app
 CMD ["node", "./dist/server/entry.mjs"]

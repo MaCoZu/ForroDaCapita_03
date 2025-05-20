@@ -1,77 +1,32 @@
-import { defineConfig } from "tinacms";
-import { LocalAuthProvider } from 'tinacms'; 
-import {
-  TinaUserCollection,
-  UsernamePasswordAuthJSProvider,
-} from 'tinacms-authjs/dist/tinacms'
+import { defineConfig} from "tinacms";
+import { Pages } from './collections/pages'
+import { News } from './collections/news'
 
-// Check if we're in local development mode
-const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === 'true';
+const isLocal = process.env.NODE_ENV === 'development';
+
+const gitBranch =
+  process.env.NEXT_PUBLIC_TINA_BRANCH ||
+  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
+  process.env.HEAD;
 
 export default defineConfig({
-  branch: process.env.GITHUB_BRANCH || "main",
-  token: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-
-  // Very important for Astro setup - point to our API routes
-  contentApiUrlOverride: '/api/tina/gql',
-
-  authProvider: isLocal
-    ? new LocalAuthProvider()
-    : new UsernamePasswordAuthJSProvider(),
+  token: process.env.TINA_TOKEN, // This should match the value in your .env file
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID, // This should match the value in your .env file
+  branch: gitBranch,
 
   build: {
     outputFolder: "admin",
     publicFolder: "public",
   },
-
+  media: {
+    tina: {
+      mediaRoot: "",
+      publicFolder: "public",
+    },
+  },
+  // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
   schema: {
-    collections: [
-      TinaUserCollection,
-      {
-        name: "news",
-        label: "News",
-        path: "src/content/news",
-        defaultItem: () => {
-          return {
-            pubDate: new Date().toISOString(),
-            updateDate: new Date().toISOString(),
-          }
-        },
-        fields: [
-          { name: "title", label: "Title", type: "string", isTitle: true, required: true },
-          { name: "pubDate", label: "Publication Date", type: "datetime", },
-          { name: "updatedDate", label: "Update Date", type: "datetime", },
-          { name: "thumbnail", label: "Image", type: "image", required: false },
-          { name: "body", label: "Body", type: "rich-text", isBody: true },
-        ],
-        ui: {
-          allowedActions: {
-            create: true, 
-            delete: false,
-            createNestedFolder: false, 
-          },
-          beforeSubmit: async ({ values }) => {
-            return {
-              ...values,
-              updatedDate: new Date().toISOString() // Updates every save
-            }
-          }
-        },
-      },
-
-      {
-        name: "pages",
-        label: "Pages",
-        path: "src/content/pages",
-        fields: [
-          { name: "title", label: "Title", type: "string", isTitle: true, required: true, },
-          { name: "body", label: "Page Content", type: "rich-text", isBody: true, },
-        ],
-      },
-
-    ],
-    
+    collections: [Pages, News],
   },
   search: {
     tina: {
@@ -81,5 +36,4 @@ export default defineConfig({
     indexBatchSize: 100,
     maxSearchIndexFieldLength: 100,
   },
- 
 });
