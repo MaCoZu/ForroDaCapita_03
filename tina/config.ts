@@ -4,10 +4,9 @@ import { News } from './collections/news'
 
 
 const branch =
-  process.env.GITHUB_BRANCH || // Netlify-style
-  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF || // Vercel-style
-  process.env.HEAD || // Fallback (some hosts set this)
-  "main"; // Final fallback
+  process.env.GIT_COMMIT_REF || // ✅ Netlify's branch variable
+  process.env.HEAD || // fallback
+  'main';
 
 export default defineConfig({
   token: process.env.TINA_TOKEN, // This should match the value in your .env file

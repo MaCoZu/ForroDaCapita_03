@@ -1,9 +1,0 @@
-[build]
-  command = "pnpm install && pnpm build"
-  publish = "dist"
-  environment = { NODE_VERSION = "18" } # Or whatever Node you're using
-
-[context.production.environment]
-  TINA_CLIENT_ID = "ceea6310-39b0-4882-856a-9b2052c05331"
-  TINA_TOKEN = "da8d30fc306876ec6969808f7dc436fde2713315"
-  GITHUB_BRANCH = "main"
