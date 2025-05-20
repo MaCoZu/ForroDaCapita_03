@@ -4,9 +4,9 @@ import { News } from './collections/news'
 
 
 const branch =
-  process.env.GIT_COMMIT_REF || // ✅ Netlify's branch variable
-  process.env.HEAD || // fallback
-  'main';
+  process.env.NEXT_PUBLIC_TINA_BRANCH ||
+  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
+  process.env.HEAD || '';
 
 export default defineConfig({
   token: process.env.TINA_TOKEN, // This should match the value in your .env file
