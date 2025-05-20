@@ -1,15 +1,8 @@
 [build]
   command = "pnpm install && pnpm build"
   publish = "dist"
+  environment = { NODE_VERSION = "18" } # Match your local version
 
-[build.environment]
-  NODE_VERSION = "18"
-
-[functions]
-  node_bundler = "esbuild"
-
-[[redirects]]
-  from = "/api/tina/*"
-  to = "/.netlify/functions/tina"
-  status = 200
-  force = true
+[context.production.environment]
+  NEXT_PUBLIC_TINA_CLIENT_ID = "$TINA_CLIENT_ID"
+  TINA_TOKEN = "$TINA_TOKEN"

@@ -4,13 +4,17 @@ import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import alpinejs from '@astrojs/alpinejs';
-import auth from 'auth-astro';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.forrodacapita.de',
-  integrations: [mdx(), sitemap(), react(), alpinejs(), auth()],
+  integrations: [mdx(), sitemap(), react(), alpinejs()],
   plugins: [tailwindcss()],
+  vite: {
+    ssr: {
+      noExternal: ['@tinacms/*']
+    }
+  },
   build: {
     // Copy admin files to dist
     assetsInlineLimit: 0,
