@@ -10,15 +10,15 @@ import Article from "../components/Article.astro";
 	<h1 class="text-3xl font-merri font-semibold mb-5 md:mt-15 mt-5">Forró</h1>
 	<div class="flex flex-col col-span-1 lg:flex-row justify-between">
 		<div class="lg:pr-5">
-			<Article>
+			<Article className="w-full" lang="en">
 				<ForroText />
 			</Article>
 		</div>
-		<div class="">
+		<div class="md:-mt-20 md:w-1/3">
 			<Image
 				src={Mascot}
 				alt="PA58 Mascot"
-				class="h-auto w-auto md:min-w-md lg:min-w-lg"
+				class="float-right h-auto"
 			/>
 		</div>
 	</div>
