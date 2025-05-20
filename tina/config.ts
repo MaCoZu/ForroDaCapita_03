@@ -2,9 +2,7 @@ import { defineConfig} from "tinacms";
 import { Pages } from './collections/pages'
 import { News } from './collections/news'
 
-const isLocal = process.env.NODE_ENV === 'development';
-
-const gitBranch =
+const branch =
   process.env.NEXT_PUBLIC_TINA_BRANCH ||
   process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
   process.env.HEAD;
@@ -12,7 +10,7 @@ const gitBranch =
 export default defineConfig({
   token: process.env.TINA_TOKEN, // This should match the value in your .env file
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID, // This should match the value in your .env file
-  branch: gitBranch,
+  branch,
 
   build: {
     outputFolder: "admin",

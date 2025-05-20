@@ -3,7 +3,6 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import alpinejs from '@astrojs/alpinejs';
-
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
