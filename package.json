@@ -3,12 +3,10 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "tina-dev": "tinacms dev -c \"astro dev\"",
-    "tina-build": "tinacms build && astro build",
-    "tina-audit": "tinacms audit",
-    "build": "astro build",
+    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"astro dev\"",
+    "build": "TINA_PUBLIC_IS_LOCAL=true tinacms build && astro build",
     "preview": "astro preview",
+    "tina-audit": "tinacms audit",
     "gen:types": "tinacms types:gen"
   },
   "pnpm": {

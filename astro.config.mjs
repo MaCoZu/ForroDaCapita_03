@@ -7,7 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.forrodacapita.de',
+  site: 'https://forrodacapita.netlify.app',
   integrations: [mdx(), sitemap(), react(), alpinejs()],
 
   build: {
