@@ -4,6 +4,9 @@ dist/
 .astro/
 backup
 
+# content
+src/content/news/*.md
+
 # dependencies
 node_modules/
 
