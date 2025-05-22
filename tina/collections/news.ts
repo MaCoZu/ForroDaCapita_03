@@ -27,7 +27,7 @@ export const News: Collection = {
 
                 return {
                     ...values,
-                    updatedDate: new Date().toISOString()
+                    // updatedDate: new Date().toISOString()
                 };
             }
             return values;
