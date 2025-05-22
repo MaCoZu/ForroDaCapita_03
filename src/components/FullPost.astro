@@ -34,7 +34,7 @@ const { Content } = await render(post);
         </div>
         <div class="flex-1 w-full lg:w-2/3 font-merri">
             <time class="flex justify-end md:pr-7 text-md text-gray-500">
-                {post.data.updatedDate ? "updated: " : "created: "}
+                {post.data.updatedDate ? "updated: " : ""}
                 {
                     displayDate
                         .toLocaleDateString("de-DE", {
