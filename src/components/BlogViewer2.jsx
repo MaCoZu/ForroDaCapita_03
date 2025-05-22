@@ -3,9 +3,9 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm';
 
 export default function BlogViewer({ posts, postContents }) {
-    const [currentSlug, setCurrentSlug] = useState(posts[0].id)
-    const currentPost = posts.find((post) => post.id === currentSlug)
-    const markdown = postContents[currentPost.id]
+    const [currentSlug, setCurrentSlug] = useState(posts.length > 0 ? posts[0].id : null);
+    const currentPost = currentSlug ? posts.find((post) => post.id === currentSlug) : null;
+    const markdown = currentPost ? postContents[currentPost.id] : ''; 
 
     // Helper function to format the date and time
     const formatDateTimeString = (dateString) => {
