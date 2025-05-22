@@ -10,7 +10,7 @@ const branch =
   "main";
 
 export default defineConfig({
-  token: process.env.TINA_TOKEN, // This should match the value in your .env file
+  token: process.env.TINA_TOKEN, 
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID, 
   branch,
 

@@ -3,11 +3,13 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "tinacms dev -c \"astro dev\"",
+    "dev": "astro dev",
     "build": "tinacms build && astro build",
     "preview": "astro preview",
     "tina-audit": "tinacms audit",
-    "gen:types": "tinacms types:gen"
+    "gen:types": "tinacms types:gen",
+    "astro": "astro",
+    "tinacms": "tinacms dev -c \"astro dev\""
   },
   "pnpm": {
     "allowedDeprecatedVersions": {
@@ -46,6 +48,7 @@
     "react-dom": "18.3.1",
     "react-markdown": "^10.1.0",
     "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.1",
     "sharp": "^0.34.1",
     "tailwind-merge": "^3.3.0",
     "tailwindcss": "^4.1.7",

@@ -8,12 +8,14 @@ const allPosts = await getCollection("news").then((posts) =>
     posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
 );
 
-
 const posts = allPosts.map((post) => ({
     id: post.id,
     slug: post.id, // Using slug instead of id as it's more appropriate for URLs
     title: post.data.title,
-    pubDate: post.data.pubDate,
+    pubDate: post.data.pubDate.toISOString(),
+    updatedDate: post.data.updatedDate
+        ? post.data.updatedDate.toISOString()
+        : undefined,
 }));
 
 // Create an object with the post body content
