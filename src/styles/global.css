@@ -53,12 +53,23 @@
 @layer components {
 	.btn {
 		@apply text-black
-		hover:text-violet-900
-		hover:scale-105 
 		transition 
 		delay-50 
 		duration-300 
 		ease-in-out 
 		will-change-transform;
+
+		/* Apply hover effects ONLY on devices with a fine pointer (e.g., mouse) */
+		@media (hover: hover) and (pointer: fine) {
+			@apply 
+			hover:text-violet-900 
+			hover:scale-105;
+		}
+
+		/* Apply active/focus effects universally */
+		@apply active:text-violet-900 
+		active:scale-105 
+		focus:text-violet-900 
+		focus:scale-105;
 	}
 }
