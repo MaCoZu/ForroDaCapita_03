@@ -151,7 +151,12 @@ const adminUrl = import.meta.env.DEV
         <div class="btn"><a href="/">Home</a></div>
         <div class="btn"><a href="/news">News</a></div>
 
-        <div class="group relative" x-data="{ open: false }">
+        <div
+          class="group relative"
+          x-data="{ open: false }"
+          @scroll.window="open = false"
+          @click.outside="open = false"
+        >
           <button
             class="btn"
             @click="open = !open"
@@ -166,7 +171,7 @@ const adminUrl = import.meta.env.DEV
                    pl-4 md:pr-0 rounded-md
                    z-50
                    whitespace-nowrap transition-all duration-200"
-            :class="{'invisible opacity-0': !open, 'visible': open}"
+            :class="{'invisible md:opacity-0': !open, 'visible md:opacity-90' : open}"
             x-cloak
             @mouseleave="setTimeout(() => open = false, 300)"
             x-transition:enter="transition ease-out duration-200"
