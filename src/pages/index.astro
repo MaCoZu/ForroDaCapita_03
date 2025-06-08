@@ -1,15 +1,16 @@
 ---
+import Divider from "../components/Divider.astro";
 import FullPost from "../components/FullPost.astro";
 import Layout from "../layouts/Layout.astro";
-import Divider from "../components/Divider.astro";
 
 import { Image } from "astro:assets";
-import MapImage from "../assets/images/pageimages/map.png";
-import Sign from "../assets/images/pageimages/pa58_images/sign.jpg";
-import Path from "../assets/images/pageimages/pa58_images/path.jpg";
-import Door from "../assets/images/pageimages/pa58_images/door.jpg";
-
 import { getCollection } from "astro:content";
+import MapImage from "../assets/images/pageimages/map.png";
+import Door from "../assets/images/pageimages/pa58_images/door.jpg";
+import Path from "../assets/images/pageimages/pa58_images/path.jpg";
+import Sign from "../assets/images/pageimages/pa58_images/sign.jpg";
+import Forro from "./forro.astro";
+import PA58 from "./pa58.astro";
 
 const posts = (await getCollection("news"))
     .map((post) => ({
@@ -94,7 +95,7 @@ const [latest, ...rest] = posts ?? [];
         </div>
     </div>
 
-    <!-- PHOTOS  -->
+    <!-- How to find Us  -->
     <Divider text="How to find us." className="mt-20 mb-10 flex" />
 
     <div class="md:mb-5 mb-0">
@@ -120,4 +121,9 @@ const [latest, ...rest] = posts ?? [];
             class="w-full md:flex-1 max-w-full rounded-sm aspect-square hover:scale-105 transition-all object-cover"
         />
     </div>
+    <Divider id="pa58" text="Prinzenalle 58" className="mt-20 mb-10 flex" />
+    <Forro/>
+    <Divider id="forro" text="About Forró" className="mt-20 mb-10 flex" />
+    <PA58/>
+
 </Layout>

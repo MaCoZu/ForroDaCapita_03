@@ -185,7 +185,7 @@ const adminUrl = import.meta.env.DEV
               class="flex flex-row text-xl space-x-5 items-center"
               @mouseenter="open = true"
             >
-              <a href="/forro" class="btn flex items-center">
+              <a href="#forro" class="btn flex items-center">
                 <!-- Forró SVG -->
                 <svg
                   fill="currentColor"
@@ -199,8 +199,9 @@ const adminUrl = import.meta.env.DEV
                   ></path>
                 </svg>
               </a>
-              <a href="/pa58" class="btn">PA58</a>
+              <a href="#pa58" class="btn">PA58</a>
               <a href={adminUrl} class="btn">Admin</a>
+              <a href="/tests" class="btn">Tests</a>
             </div>
           </div>
         </div>

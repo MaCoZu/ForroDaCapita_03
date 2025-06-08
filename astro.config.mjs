@@ -15,9 +15,9 @@ export default defineConfig({
     assetsInlineLimit: 0,
     rollupOptions: {
       output: {
-        assetFileNames: 'assets/[name][extname]'
-      }
-    }
+        assetFileNames: 'assets/[name][extname]',
+      },
+    },
   },
 
   resolve: {
