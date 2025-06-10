@@ -1,0 +1,197 @@
+---
+
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="../tests">Index</a>
+    <div class="container">
+      <h1 aria-label="good advice">
+        all the &nbsp;<span class="typewriter"></span>
+      </h1>
+    </div>
+    <style>
+      .body {
+        background: #ffffff;
+      }
+      .container {
+        background-color: #fff;
+        margin: 10rem auto;
+        width: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      h1 {
+        font-size: clamp(1.5rem, calc(1.5rem + 1vw), 2.5rem);
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+      }
+      @keyframes typing {
+        0.00%,
+        1.50% {
+          content: '';
+        }
+
+        /* Typing "humbug" */
+        2.00%,
+        3.50% {
+          content: 'h';
+        }
+        4.00%,
+        5.50% {
+          content: 'hu';
+        }
+        6.00%,
+        7.50% {
+          content: 'hum';
+        }
+        8.00%,
+        9.50% {
+          content: 'humb';
+        }
+        10.00%,
+        11.50% {
+          content: 'humbu';
+        }
+        12.00%,
+        25.00% {
+          content: 'humbug';
+        } /* Pause on 'humbug' */
+
+        /* Deleting "humbug" gradually */
+        26.00%,
+        27.50% {
+          content: 'humbu';
+        }
+        28.00%,
+        29.50% {
+          content: 'humb';
+        }
+        30.00%,
+        31.50% {
+          content: 'hum';
+        }
+        32.00%,
+        33.50% {
+          content: 'hu';
+        }
+        34.00%,
+        35.50% {
+          content: 'h';
+        }
+        36.00%,
+        37.50% {
+          content: '';
+        } /* empty state again */
+
+        /* Typing "good advice" */
+        40.00%,
+        41.50% {
+          content: 'g';
+        }
+        42.00%,
+        43.50% {
+          content: 'go';
+        }
+        44.00%,
+        45.50% {
+          content: 'goo';
+        }
+        46.00%,
+        47.50% {
+          content: 'good';
+        }
+        48.00%,
+        49.50% {
+          content: 'good ';
+        }
+        50.00%,
+        51.50% {
+          content: 'good a';
+        }
+        52.00%,
+        53.50% {
+          content: 'good ad';
+        }
+        54.00%,
+        55.50% {
+          content: 'good adv';
+        }
+        56.00%,
+        57.50% {
+          content: 'good advi';
+        }
+        58.00%,
+        59.50% {
+          content: 'good advic';
+        }
+        60.00%,
+        100% {
+          content: 'good advice';
+        }
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      .typewriter {
+        --caret: currentcolor;
+      }
+
+      .typewriter::before {
+        content: '';
+        animation: typing 7.5s infinite;
+      }
+
+      .typewriter::after {
+        content: '';
+        border-right: 1px solid var(--caret);
+        animation: blink 0.5s linear infinite;
+      }
+
+      .typewriter.thick::after {
+        border-right: 1ch solid var(--caret);
+      }
+
+      .typewriter.nocaret::after {
+        border-right: 0;
+      }
+
+      @media (prefers-reduced-motion) {
+        .typewriter::after {
+          animation: none;
+        }
+
+        @keyframes sequencePopup {
+          0%,
+          100% {
+            content: 'good';
+          }
+          50% {
+            content: 'advice';
+          }
+        }
+
+        .typewriter::before {
+          content: 'humbug';
+          animation: sequencePopup 12s linear infinite;
+        }
+      }
+    </style>
+  </body>
+</html>
