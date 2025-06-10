@@ -12,25 +12,26 @@ document.addEventListener('DOMContentLoaded', () => {
     wheelMultiplier: 1, // Default: 1
     touchMultiplier: 2, // Default: 2
     autoResize: true, // Default: true
+    anchors: true,
     // You can add more options here: https://github.com/darkroomengineering/lenis#options
   });
 
   // Optional: Integrate with GSAP ScrollTrigger if you're using it
   // This is crucial for GSAP animations to work correctly with smooth scrolling
-  // if (typeof window !== 'undefined' && window.gsap && window.gsap.ScrollTrigger) {
-  //   lenis.on('scroll', window.gsap.ScrollTrigger.update);
-  //   window.gsap.ticker.add((time) => {
-  //     lenis.raf(time * 1000); // Lenis expects milliseconds
-  //   });
-  //   window.gsap.ticker.lagSmoothing(0); // Disable lag smoothing for optimal sync
-  // } else {
-  // If not using GSAP ScrollTrigger, manually run the raf loop
-  function raf(time) {
-    lenis.raf(time);
+  if (typeof window !== 'undefined' && window.gsap && window.gsap.ScrollTrigger) {
+    lenis.on('scroll', window.gsap.ScrollTrigger.update);
+    window.gsap.ticker.add(time => {
+      lenis.raf(time * 1000); // Lenis expects milliseconds
+    });
+    window.gsap.ticker.lagSmoothing(0); // Disable lag smoothing for optimal sync
+  } else {
+    // If not using GSAP ScrollTrigger, manually run the raf loop
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
     requestAnimationFrame(raf);
   }
-  requestAnimationFrame(raf);
-  // }
 
   // You can also expose lenis globally for debugging or other scripts
   // window.lenis = lenis;
